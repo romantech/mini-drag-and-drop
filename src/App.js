@@ -4,18 +4,10 @@ import Lists from './components/Lists';
 import theme from './styles/theme';
 
 function App() {
-  const items = [
-    { number: '1', title: '🇦🇷 Argentina' },
-    { number: '2', title: '🤩 Yeah' },
-    { number: '3', title: '👨🏻‍💻 Tech Man' },
-    { number: '4', title: '🍎 Apple & Code' },
-    { number: '5', title: '💃🏼 Latina' },
-  ];
-
   return (
     <ThemeProvider theme={theme}>
       <S.Wrapper>
-        <Lists items={items} />
+        <Lists />
       </S.Wrapper>
     </ThemeProvider>
   );
@@ -28,9 +20,11 @@ S.Wrapper = styled.section`
   width: 100vw;
   height: 100vh;
   background: #1d1e21;
-  font-size: 3.5vw;
+  font-size: 3.2vw;
   @media (min-width: 900px) {
-    font-size: 2vw;
+    font-size: 1.8vw;
+    // 1vw는 뷰포트 넓이의 1%, 900px라면 9px (900 * 0.01)
+    // 1.8vw는 900 * 0.018 = 16.2px
   }
 `;
 
