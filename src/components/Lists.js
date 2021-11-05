@@ -20,10 +20,10 @@ const initialDnDState = {
 };
 
 const Lists = () => {
-  const [list, setList] = useState(items);
-  const [dragAndDrop, setDragAndDrop] = useState(initialDnDState);
+  const [list, setList] = useState(items); // 렌더될 요소
+  const [dragAndDrop, setDragAndDrop] = useState(initialDnDState); // D&D 관련 상태
 
-  // 드래그를 시작할 때(마우스를 클릭한 후 움직일 때)
+  // * 드래그를 시작할 때(마우스를 클릭한 후 움직일 때)
   const onDragStart = e => {
     const initialPosition = Number(e.target.dataset.position);
     setDragAndDrop({
@@ -34,40 +34,41 @@ const Lists = () => {
     });
   };
 
-  // 유효한 드롭 대상일 때(아이템이 드롭될 수 있는 곳일 때) 트리거되는 이벤트
+  // * 유효한 드롭 대상일 때(onDragOver 및 onDrop 이벤트가 걸려있는 DOM) 트리거되는 이벤트
   // 이때 event.target은 마우스 커서 아래에 있는 요소를 가리킨다(드롭 가능한 요소)
   const onDragOver = e => {
     // onDragOver 이벤트는 드롭을 취소시키는 기본 이벤트를 가진다
     // 드롭 이벤트를 사용하기 위해 preventDefault()로 기본 이벤트를 방지한다
     // 참고: https://developer.mozilla.org/ko/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#droptargets
     e.preventDefault();
-    let newList = dragAndDrop.originalOrder;
-    const { draggedFrom } = dragAndDrop; // 드래그를 시작한 items 요소의 인덱스
-    const draggedTo = Number(e.target.dataset.position); // 현재 hover되고 있는 드롭 item 영역의 인덱스
-    const itemDragged = newList[draggedFrom]; // draggedFrom 위치에 있는 인덱스 저장(드래그 하고 있는 요소 저장)
-    // 현재 드래그 하고 있는 요소 제외하여 필터된 items 목록
-    const remainingItems = newList.filter((_, index) => index !== draggedFrom);
+    const draggedTo = Number(e.target.dataset.position); // 현재 hover 되고 있는(마우스가 위치한) item의 인덱스
+    const { originalOrder, draggedFrom } = dragAndDrop; // 기존 리스트 및 드래그중인 요소의 인덱스 조회
+    const remainingItems = originalOrder.filter(
+      (_, index) => index !== draggedFrom, // 현재 드래그 하고 있는 요소를 제외한 items 목록
+    );
 
-    // 아이템 리스트 업데이트
-    newList = [
+    // 리스트 순서 변경.
+    // 현재 드래그중인 아이템을 draggedTo(현재 마우스가 위치한) 인덱스 위치로 추가
+    const updatedOrder = [
       ...remainingItems.slice(0, draggedTo),
-      itemDragged,
+      originalOrder[draggedFrom], // 현재 드래그중인 아이템
       ...remainingItems.slice(draggedTo),
     ];
 
-    // 현재 이벤트의 타겟이 dragAndDrop 상태에 저장된 타겟이 동일하지 않을때만 리스트 업데이트
+    // 순서 변경한 리스트 및 hover 요소의 인덱스(draggedTo) 업데이트.
+    // 상태에 저장한 hover 요소 인덱스(draggedTo)와 같지 않을때만 업데이트
     if (draggedTo !== dragAndDrop.draggedTo) {
       setDragAndDrop({
         ...dragAndDrop,
-        updatedOrder: newList, // 업데이트 리스트 상태에 저장. 드롭한다면 해당 리스트가 렌더됨
+        updatedOrder, // 드롭 이벤트가 트리거되면 해당 리스트가 렌더됨
         draggedTo,
       });
     }
   };
 
-  // 마우스 클릭을 해제하여 드롭했을 때 트리거되는 이벤트
+  // * 드롭 가능한 영역에서 마우스 클릭을 해제하여 드롭했을 때 트리거되는 이벤트
   const onDrop = () => {
-    // 리스트 업데이트
+    // onDropOver에서 작업해둔(마우스 커서에 따라 순서를 변경한) 요소 리스트 업데이트
     setList(dragAndDrop.updatedOrder);
 
     // dragAndDrop 상태 초기화
@@ -79,6 +80,7 @@ const Lists = () => {
     });
   };
 
+  // * 드래그하고 있는 요소가 드롭할 수 있는 영역을 벗어났을 때 트리거되는 이벤트
   const onDragLeave = () => {
     setDragAndDrop({
       ...dragAndDrop,
@@ -92,9 +94,7 @@ const Lists = () => {
         {list.map((item, index) => (
           <li
             className={
-              dragAndDrop && dragAndDrop.draggedTo === Number(index)
-                ? 'dropArea'
-                : ''
+              dragAndDrop?.draggedTo === Number(index) ? 'dropArea' : ''
             }
             data-position={index}
             key={item.number}
