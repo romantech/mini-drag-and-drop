@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+# 드래그앤드롭 구현
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![2021-11-05 15 30 43](https://user-images.githubusercontent.com/8604840/140512920-d027dbf8-e434-4bdc-a9ef-28b4ad0f5805.gif)
 
-## Available Scripts
+## 사용 스택
+- React + Hooks
+- Styled-Components
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## TL;DR
+1. 드래그할 수 있는 요소로 변경 — `draggable={true}`
+2. 드래그 시작 — **onDragStart** 이벤트 트리거
+    1. 드래그하고 있는 요소의 인덱스 정보 저장 — `state.draggedFrom`
+    2. 드래그 상태 true로 변경 — `state.isDragging`
+    3. 이벤트 트리거 시점의 엘리먼트 리스트 저장 — `state.originalOrder`
+3. 마우스 커서가 드롭 가능한 영역에 있을 때 — **onDragOver** 이벤트 트리거
+    1. drop 이벤트를 사용할 수 있도록 dragOver 기본 이벤트 방지 — `e.preventDefault()`
+    2. 마우스 포인터 위치에 있는 요소의 인덱스 저장 — `state.draggedTo`
+    3. 엘리먼트 순서 변경 — `state.updatedOrder`
+        
+        *드래그중인 아이템을 마우스 포인트가 위치한 요소의 위치(draggedTo 인덱스)로 이동. 기존 마우스 포인터 위치에 있던 요소는 바로 뒤로 밀림.* 
+        
+4. 드롭 가능한 영역에서 드롭했을 때 — **onDrop** 이벤트 트리거
+    1. 순서를 변경한 엘리먼트 리스트 렌더
+    2. 드래그앤드롭 관련 상태 초기화
+## 구현 과정 노트
+https://www.notion.so/colorfilter/TIL-React-Hooks-aeb08a0e110943bb8a2267e32f34da04
