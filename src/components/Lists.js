@@ -19,7 +19,7 @@ const initialDnDState = {
   updatedOrder: [], // 드롭한 후 순서가 바뀐 list
 };
 
-const Lists = () => {
+function Lists() {
   const [list, setList] = useState(items); // 렌더될 요소
   const [dragAndDrop, setDragAndDrop] = useState(initialDnDState); // D&D 관련 상태
 
@@ -117,7 +117,7 @@ const Lists = () => {
       </ul>
     </S.Container>
   );
-};
+}
 
 const S = {};
 S.Container = styled.section`
