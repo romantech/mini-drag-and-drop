@@ -1,4 +1,4 @@
-# 드래그앤드롭 구현
+# 미니 드래그앤드롭
 
 ![2021-11-05 15 30 43](https://user-images.githubusercontent.com/8604840/140512920-d027dbf8-e434-4bdc-a9ef-28b4ad0f5805.gif)
 - Live Demo : https://mini-drag-and-drop.vercel.app
