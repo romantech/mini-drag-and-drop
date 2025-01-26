@@ -1,12 +1,12 @@
 # 미니 드래그앤드롭
 
 ![2021-11-05 15 30 43](https://user-images.githubusercontent.com/8604840/140512920-d027dbf8-e434-4bdc-a9ef-28b4ad0f5805.gif)
-- Live Demo : https://mini-drag-and-drop.vercel.app
+- Live Demo: https://mini-drag-and-drop.vercel.app
 
 ## 사용 스택
-- React(CRA) + Hooks
-- Styled-Components + Babel Plugin Macros
-- React Icons
+- Core: React
+- Styling: Styled-Components + Babel Plugin Macros
+- Other: React Icons
 
 ## TL;DR
 1. 드래그할 수 있는 요소로 변경 — `draggable={true}`
@@ -45,18 +45,18 @@
 
 드래그한 (요소)데이터와 상호 작용하기 위해 `setData()`와 `getData()` 같은 이벤트 메서드를 사용할 수도 있다. 현재 드래그 하고 있는 요소 정보(id 등)를 `setData()`를 통해 저장하고, 드롭했을 때 `getData()`를 통해 요소 정보를 불러온 후 재정렬 하는 방식으로 활용할 수 있다. 
 
-```jsx
+```js
 event.dataTransfer.setData(key, value) // 여러 key를 이용해 다수의 데이터를 저장할 수 있다
 event.dataTransfer.getData(key)
 ```
 
-## 구현 과정 노션 문서
-1. [상태 정의](https://www.notion.so/colorfilter/TIL-React-Hooks-aeb08a0e110943bb8a2267e32f34da04#57e95fc116354ac682ab42e95693070a)
-2. [드래그 가능한 요소로 변경](https://www.notion.so/colorfilter/TIL-React-Hooks-aeb08a0e110943bb8a2267e32f34da04#bef5c4f9cbc142c2aacbb6dcc872dc99)
-3. [드래그 이벤트 핸들러](https://www.notion.so/colorfilter/TIL-React-Hooks-aeb08a0e110943bb8a2267e32f34da04#020ebb0f1d6a414c9482dbbfa5c9730a)
-4. [Placeholder 스타일](https://www.notion.so/colorfilter/TIL-React-Hooks-aeb08a0e110943bb8a2267e32f34da04#474008a8d4d947d5a75b05006ba80880)
+## 구현 과정 포스팅 
+1. [상태 정의](https://romantech.net/1118#:~:text=dataTransfer.getData(key)%3B-,%EC%83%81%ED%83%9C,-%EB%A6%AC%EC%95%A1%ED%8A%B8%20%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%20%EB%B0%94%EA%B9%A5)
+2. [드래그 가능한 요소로 변경](https://romantech.net/1118#:~:text=%7D%3B-,%EB%93%9C%EB%9E%98%EA%B7%B8%20%EA%B0%80%EB%8A%A5%ED%95%9C%20%EC%9A%94%EC%86%8C%EB%A1%9C%20%EB%B3%80%EA%B2%BD,-%E2%9E%8A%EB%A7%81%ED%81%AC%20%E2%9E%8B%EC%9D%B4%EB%AF%B8%EC%A7%80%20%E2%9E%8C%EC%84%A0%ED%83%9D%ED%95%9C)
+3. [드래그 이벤트 핸들러](https://romantech.net/1118#:~:text=%EB%93%9C%EB%9E%98%EA%B7%B8%20%EC%9D%B4%EB%B2%A4%ED%8A%B8-,%ED%95%B8%EB%93%A4%EB%9F%AC,-onDragOver%EC%99%80%20onDrop)
+4. [Placeholder 스타일](https://romantech.net/1118#:~:text=Placeholder-,%EC%8A%A4%ED%83%80%EC%9D%BC,-DROP%20HERE%20%EB%B6%80%EB%B6%84%EC%9D%B4)
 
 
 ## 레퍼런스
-1. [DEV - Creating a Drag and Drop List with React Hooks](https://dev.to/florantara/creating-a-drag-and-drop-list-with-react-hooks-4c0i)
-2. [MDN - HTML 드래그 앤 드롭 API](https://developer.mozilla.org/ko/docs/Web/API/HTML_Drag_and_Drop_API)
+1. [DEV: Creating a Drag and Drop List with React Hooks](https://dev.to/florantara/creating-a-drag-and-drop-list-with-react-hooks-4c0i)
+2. [MDN: HTML 드래그 앤 드롭 API](https://developer.mozilla.org/ko/docs/Web/API/HTML_Drag_and_Drop_API)
