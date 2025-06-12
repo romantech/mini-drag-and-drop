@@ -1,0 +1,4 @@
+# 패키지 설치시 라이프사이클 스크립트(설치 전/중/후)를 실행하도록 허용할 패키지 명시
+onlyBuiltDependencies:
+  - core-js
+  - core-js-pure
