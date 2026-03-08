@@ -1,6 +1,5 @@
-import React from 'react';
-import styled, { ThemeProvider } from 'styled-components/macro';
 import { Analytics } from '@vercel/analytics/react';
+import styled, { ThemeProvider } from 'styled-components';
 import Lists from './components/Lists';
 import theme from './styles/theme';
 
@@ -21,7 +20,7 @@ S.Wrapper = styled.section`
   place-content: center;
   width: 100vw;
   height: 100vh;
-  background: #1d1e21;
+  background: #1d1e21;   
   font-size: 3.2vw;
   @media (min-width: 900px) {
     font-size: 1.8vw;

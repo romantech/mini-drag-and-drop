@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import styled from 'styled-components/macro';
+import { useState } from 'react';
 import { FaArrowsAltV as FaIcon } from 'react-icons/fa';
+import styled from 'styled-components';
 
 const items = [
   { number: '1', title: '🇦🇷 Argentina' },
@@ -24,7 +23,7 @@ function Lists() {
   const [dragAndDrop, setDragAndDrop] = useState(initialDnDState); // D&D 관련 상태
 
   // * 드래그를 시작할 때(마우스를 클릭한 후 움직일 때)
-  const onDragStart = e => {
+  const onDragStart = (e) => {
     const initialPosition = Number(e.target.dataset.position);
     setDragAndDrop({
       ...dragAndDrop,
@@ -36,7 +35,7 @@ function Lists() {
 
   // * 유효한 드롭 대상일 때(onDragOver 및 onDrop 이벤트가 걸려있는 DOM) 트리거되는 이벤트
   // 이때 event.target은 마우스 커서 아래에 있는 요소를 가리킨다(드롭 가능한 요소)
-  const onDragOver = e => {
+  const onDragOver = (e) => {
     // onDragOver 이벤트는 드롭을 취소시키는 기본 이벤트를 가진다
     // 드롭 이벤트를 사용하기 위해 preventDefault()로 기본 이벤트를 방지한다
     // 참고: https://developer.mozilla.org/ko/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#droptargets
@@ -128,7 +127,7 @@ S.Container = styled.section`
   border-radius: 0.5em;
   box-shadow: 4px 4px 50px rgba(104, 123, 247, 0);
   transition: box-shadow 100ms linear;
-  :hover {
+  &:hover {
     box-shadow: 4px 4px 50px rgb(104, 123, 247, 0.8);
   }
 

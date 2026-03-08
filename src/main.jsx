@@ -1,4 +1,4 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import GlobalStyle from './styles/globalStyle';
 import App from './App';
@@ -8,8 +8,8 @@ if (!rootElement) throw new Error('Failed to find the root element');
 const root = createRoot(rootElement);
 
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <GlobalStyle />
     <App />
-  </React.StrictMode>,
+  </StrictMode>,
 );
