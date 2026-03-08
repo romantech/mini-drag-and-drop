@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { FaArrowsAltV as FaIcon } from 'react-icons/fa';
 
 const items = [

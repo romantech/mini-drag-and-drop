@@ -5,7 +5,7 @@
 
 ## 사용 스택
 - Core: React
-- Styling: Styled-Components + Babel Plugin Macros
+- Styling: Styled-Components
 - Other: React Icons
 
 ## TL;DR

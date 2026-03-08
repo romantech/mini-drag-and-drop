@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components/macro';
+import styled, { ThemeProvider } from 'styled-components';
 import { Analytics } from '@vercel/analytics/react';
 import Lists from './components/Lists';
 import theme from './styles/theme';
