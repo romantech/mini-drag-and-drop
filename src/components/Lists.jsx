@@ -128,7 +128,7 @@ S.Container = styled.section`
   border-radius: 0.5em;
   box-shadow: 4px 4px 50px rgba(104, 123, 247, 0);
   transition: box-shadow 100ms linear;
-  :hover {
+  &:hover {
     box-shadow: 4px 4px 50px rgb(104, 123, 247, 0.8);
   }
 
