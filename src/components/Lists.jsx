@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import { useState } from 'react';
-import styled from 'styled-components';
 import { FaArrowsAltV as FaIcon } from 'react-icons/fa';
+import styled from 'styled-components';
 
 const items = [
   { number: '1', title: '🇦🇷 Argentina' },
